@@ -897,6 +897,12 @@ $env.config = {
         }
     ]
 }
+let windows = $nu.os-info.name == "windows"
+let linux = $nu.os-info.name == "linux"
+let zig = (nu -c "zig env" | complete ).exit_code == 0
+
+alias gcc = if $windows and $zig { zig cc } else { gcc }
+
 use ~/.cache/starship/init.nu
 source ~/.cache/carapace/init.nu
 source ~/.zoxide.nu

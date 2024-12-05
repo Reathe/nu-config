@@ -97,8 +97,13 @@ $env.NU_PLUGIN_DIRS = [
 # path add ($env.HOME | path join ".local" "bin")
 # $env.PATH = ($env.PATH | uniq)
 
+let windows = $nu.os-info.name == "windows"
+let linux = $nu.os-info.name == "linux"
+
 use std "path add"
-path add /home/linuxbrew/.linuxbrew/bin
+if $linux {
+    path add /home/linuxbrew/.linuxbrew/bin
+}
 
 # Starship
 mkdir ~/.cache/starship
